@@ -9,10 +9,11 @@ type Configuration struct {
 		Protocol int    `json:"Protocol"`
 	} `json:"Server"`
 	Commands struct {
-		StartServer         string `json:"StartServer"`
-		StartServerParam    string `json:"StartServerParam"`
-		StopServer          string `json:"StopServer"`
-		StopServerAllowKill int    `json:"StopServerAllowKill"`
+		StartServer         string   `json:"StartServer"`
+		StartServerParam    string   `json:"StartServerParam"`
+		StopServer          string   `json:"StopServer"`
+		StopServerAllowKill int      `json:"StopServerAllowKill"`
+		CallBack            []string `json:"CallBack"`
 	} `json:"Commands"`
 	Msh struct {
 		Debug                         int    `json:"Debug"`
@@ -21,6 +22,7 @@ type Configuration struct {
 		NotifyUpdate                  bool   `json:"NotifyUpdate"`
 		ListenPort                    int    `json:"ListenPort"`
 		TimeBeforeStoppingEmptyServer int64  `json:"TimeBeforeStoppingEmptyServer"`
+		CallbackEnabled               bool   `json:"CallbackEnabled"`
 	} `json:"Msh"`
 }
 

@@ -3,6 +3,7 @@ package servctrl
 import (
 	"bufio"
 	"io"
+	"msh/lib/callback"
 	"os/exec"
 	"strings"
 	"sync"
@@ -155,6 +156,9 @@ func printerOutErr() {
 
 					// launch a StopMSRequests so that if no players connect the server will shutdown
 					StopMSRequest()
+
+					// execute callback
+					callback.Execute()
 				}
 
 			case errco.SERVER_STATUS_ONLINE:

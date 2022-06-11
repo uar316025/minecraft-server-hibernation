@@ -3,6 +3,7 @@ package conn
 import (
 	"fmt"
 	"io"
+	"msh/lib/callback"
 	"net"
 	"strings"
 	"time"
@@ -62,6 +63,9 @@ func HandleClientSocket(clientSocket net.Conn) {
 				mes := buildMessage(errco.MESSAGE_FORMAT_TXT, "Server start command issued. Please wait... "+servstats.Stats.LoadProgress)
 				clientSocket.Write(mes)
 				errco.Logln(errco.LVL_E, "%smsh --> client%s:%v", errco.COLOR_PURPLE, errco.COLOR_RESET, mes)
+
+				// collect for callback
+				callback.Collect(playerName)
 			}
 		}
 
@@ -101,6 +105,9 @@ func HandleClientSocket(clientSocket net.Conn) {
 			mes := buildMessage(errco.MESSAGE_FORMAT_TXT, "Server is starting. Please wait... "+servstats.Stats.LoadProgress)
 			clientSocket.Write(mes)
 			errco.Logln(errco.LVL_E, "%smsh --> client%s:%v", errco.COLOR_PURPLE, errco.COLOR_RESET, mes)
+
+			// collect for callback
+			callback.Collect(playerName)
 		}
 
 		// close the client connection
